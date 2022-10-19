@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "7126065a-623b-41d3-b3a4-a493ecb6c9ad",
+		"name": "Minimal test case",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Log in Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Get Session succeeded', function () {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"Cookie connect.sid is present\", () => {",
+							"  console.log(pm.response.headers)",
+							"",
+							"  pm.expect(pm.cookies.has('connect.sid')).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"my-username\",\n    \"password\":\"my-password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/login/local",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						"local"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
